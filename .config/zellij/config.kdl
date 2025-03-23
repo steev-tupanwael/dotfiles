@@ -1,3 +1,6 @@
+theme "retro-wave"
+default_shell "fish"
+
 keybinds {
     // keybinds are divided into modes
     normal {

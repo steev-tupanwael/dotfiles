@@ -7,6 +7,7 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias g git
 alias yz yazi
+alias zl zellij
 
 set -gx EDITOR nvim
 
