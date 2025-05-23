@@ -1,0 +1,15 @@
+# get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# insert a blank line between shell prompts
+add_newline = false
+
+# replace symbol prompt
+[character]
+success_symbol = '[➜](bold green)'
+
+# minimal left prompt
+#format = """$directory$character"""
+
+# move all to right
+#right_format = """$all"""

@@ -1,25 +1,35 @@
-#
-# ~/.bashrc
-#
+#    _               _              
+#   | |__   __ _ ___| |__  _ __ ___ 
+#   | '_ \ / _` / __| '_ \| '__/ __|
+#  _| |_) | (_| \__ \ | | | | | (__ 
+# (_)_.__/ \__,_|___/_| |_|_|  \___|
+# 
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
-source /usr/share/nvm/init-nvm.sh
 
-# editor
-export EDITOR=nvim
-export VISUAL=nvim
+# -----------------------------------------------------
+# LOAD CUSTOM .bashrc_custom if exists
+# -----------------------------------------------------
+if [ -f ~/.bashrc_custom ] ;then
+    source ~/.bashrc_custom
+fi
 
-# exa
-export CARGO_HOME="/home/st/.cargo/bin"
-case ":$PATH:" in
-  *":$CARGO_HOME:"*) ;;
-  *) export PATH="$CARGO_HOME:$PATH" ;;
-esac
+# -----------------------------------------------------
+# Fastfetch if in Hyprland
+# -----------------------------------------------------
+if [[ $(tty) == *"pts"* ]]; then
+    fastfetch
+else
+    echo
+    echo "Start Hyprland with command Hyprland"
+fi
+
+alias ml4w-hyprland='~/.config/ml4w/apps/ML4W_Hyprland_Settings-x86_64.AppImage'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # pnpm
 export PNPM_HOME="/home/st/.local/share/pnpm"
@@ -29,12 +39,12 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# fzf
-export FZF_DEF_CMD="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEF_OPTS="--height 50% --layout=default --border --color=hl:#2dd4bf"
-export FZF_TMUX_OPTS=" -p90%,70% "
-
-# Bind Ctrl+T to invoke fzf to find files
-bind '"\C-t": "\C-u$(fd --hidden --strip-cwd-prefix --exclude .git | fzf --preview '\''bat --color=always -n --line-range :500 {}'\'')\e\C-e"'
-bind '"\C-f": "\C-u$(fd --type=d --hidden --strip-cwd-prefix --exclude .git | fzf --preview '\''eza --tree --color=always {} | head -200'\'')\e\C-e"'
-
+# cargo
+export CARGO_HOME="/home/st/.cargo/bin"
+case ":$PATH:" in
+        *":$CARGO_HOME:"*) ;;
+        *) export PATH="$CARGO_HOME:$PATH" ;;
+esac
+        
+# cargo end
+export PATH="$PATH:$(pnpm bin -g)"

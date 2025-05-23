@@ -1,0 +1,13 @@
+theme = "molokai"
+
+[editor]
+auto-pairs = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+C-s = ":w"
+C-q = ":wq"
